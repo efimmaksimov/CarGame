@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class MoneyModelView
 {
     private IMoneyBank moneyBank;
@@ -13,14 +11,18 @@ public class MoneyModelView
 
     public void Initialize()
     {
-        this.moneyBank.OnMoneyChanged += OnMoneyChanged;
+        moneyBank.OnMoneyChanged += OnMoneyChanged;
         UpdateState();
+    }
+
+    public void Dispose()
+    {
+        moneyBank.OnMoneyChanged -= OnMoneyChanged;
     }
 
     private void OnMoneyChanged()
     {
         UpdateState();
-        Debug.Log("Money");
     }
 
     private void UpdateState()

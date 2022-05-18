@@ -6,6 +6,7 @@ public class PlayerStats : MonoBehaviour
 
     public int Health { get; private set; }
     public int Damage { get; private set; }
+    public int CurrentSkinIndex { get; private set; }
 
     private void Awake()
     {
@@ -27,5 +28,9 @@ public class PlayerStats : MonoBehaviour
     public void SetHealth(int health)
     {
         this.Health = health;
+    }
+    public void SetCurrentSkin(int id)
+    {
+        CurrentSkinIndex = id;
     }
 }

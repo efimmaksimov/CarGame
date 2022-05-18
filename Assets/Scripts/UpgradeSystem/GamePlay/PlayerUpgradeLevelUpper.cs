@@ -5,7 +5,7 @@ public sealed class PlayerUpgradeLevelUpper
     private readonly IMoneyBank moneyBank;
     public PlayerUpgradeLevelUpper()
     {
-        this.moneyBank = MoneyBank.instance;
+        this.moneyBank = MoneyBank.Instance;
     }
 
     public bool CanLevelUp(PlayerUpgrade upgrade)

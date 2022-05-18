@@ -9,8 +9,13 @@ public class MoneyModelViewManager : MonoBehaviour
 
     private void Start()
     {
-        moneyBank = MoneyBank.instance;
+        moneyBank = MoneyBank.Instance;
         modelView = new MoneyModelView(moneyBank, view);
         modelView.Initialize();
+    }
+
+    private void OnDestroy()
+    {
+        modelView.Dispose();
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,6 +26,14 @@ public class UpgradeViewManager : MonoBehaviour
             var viewModel = new UpgradeViewModel(model, views[i]);
             viewModel.Initialize(upgradesManager, moneyBank);
             this.viewModels.Add(viewModel);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        for (int i = 0; i < viewModels.Count; i++)
+        {
+            viewModels[i].Dispose();
         }
     }
 }

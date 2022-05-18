@@ -94,8 +94,8 @@ public class Enemy : MonoBehaviour
     {
         Instantiate(ragdollPrefab, transform.position, transform.rotation);
         gameObject.SetActive(false);
-        generator.DeathEnemy();
         Messenger<EnemyType>.Broadcast(GameEvents.enemyDeath, type);
+        generator.DeathEnemy();
     }
 
     public void StandUp()

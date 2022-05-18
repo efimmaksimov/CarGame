@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class UpgradeViewModel
 {
     private readonly IPlayerUpgrade upgrade;
@@ -53,7 +51,7 @@ public class UpgradeViewModel
     {
         view.SetValue(upgrade.CurrentStats);
         view.SetNextValue(upgrade.NextImprovement);
-        view.SetPrice(upgrade.NextPrice.ToString());
+        view.SetPrice(upgrade.NextPrice);
         UpdateButtonState();
     }
 

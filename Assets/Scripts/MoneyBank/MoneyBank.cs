@@ -1,28 +1,32 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MoneyBank : MonoBehaviour, IMoneyBank
 {
-    public static MoneyBank instance;
+    private static MoneyBank instance;
 
     private int coins = 50000;
 
     public event Action OnMoneyChanged;
 
-    private void Awake()
+    public static MoneyBank Instance
     {
-        if (instance == null)
+        get
         {
-            instance = this;
-
+            if (instance == null) instance = new GameObject("GameManager").AddComponent<MoneyBank>(); //create game manager object if required
+            return instance;
         }
+    }
+
+    void Awake()
+    {
+        if (instance)
+            DestroyImmediate(gameObject);
         else
         {
-            Destroy(gameObject);
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
     }
     public bool CanSpendMoney(int price)
     {

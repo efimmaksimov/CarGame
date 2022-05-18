@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,21 +10,25 @@ public class UpgradeView : MonoBehaviour
 
     [SerializeField] private Button upgradeButton;
     [SerializeField] private Text valueText;
-    [SerializeField] private Text nextValueText;
     [SerializeField] private Text priceText;
+
+    private int currrentValue;
+    private int nextValue;
 
     public void SetValue(string value)
     {
-        valueText.text = value;
+        currrentValue = int.Parse(value);
+        valueText.text = $"{currrentValue} > <color=#89FD3A>{nextValue}</color>";
     }
 
     public void SetNextValue(string value)
     {
-        nextValueText.text = value;
+        nextValue = int.Parse(value);
+        valueText.text = $"{currrentValue} > <color=#89FD3A>{nextValue}</color>";
     }
 
-    public void SetPrice(string price)
+    public void SetPrice(int price)
     {
-        priceText.text = price;
+        priceText.text = price.ToString();
     }
 }

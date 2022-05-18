@@ -6,17 +6,18 @@ using UnityEngine.UI;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    [SerializeField] private Player player;
     [SerializeField] private WaveConfig waveConfig;
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private int mapSize;
     [SerializeField] private int cooldownRespawn;
+    private Player player;
 
     //private List<Enemy> activeEnemies = new List<Enemy>();
     private int enemyCounter;
 
     void Start()
     {
+        player = FindObjectOfType<Player>(false);
         StartCoroutine(Respawn());
     }
 

@@ -18,7 +18,7 @@ public class GameOver : MonoBehaviour
 
     private void Start()
     {
-        moneyBank = MoneyBank.instance;
+        moneyBank = MoneyBank.Instance;
     }
 
     private void OnGameOver()

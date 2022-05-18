@@ -18,10 +18,12 @@ public class CoinCounter : MonoBehaviour
     public void OnEnemyDeath(EnemyType type)
     {
         coins += coinsForEnemy[(int)type];
+        Debug.Log("point1");
     }
 
     public int GetReward()
     {
+        Debug.Log("point2");
         return coins;
     }
 }

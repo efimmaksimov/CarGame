@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WaveConfig
   m_EditorClassIdentifier: 
   waveDatas:
-  - enemiesQuantity: 030000000300000002000000
+  - enemiesQuantity: 010000000000000000000000
     staticObstacleQuantity: 3
     dynamicObstacleQuantity: 0
   - enemiesQuantity: 

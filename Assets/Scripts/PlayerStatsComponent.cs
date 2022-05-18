@@ -33,7 +33,6 @@ public class PlayerStatsComponent : MonoBehaviour
 
     public void DecreaseHealth(int damage)
     {
-        Debug.Log(damage);
         int health = currentHealth;
         health -= damage;
         health = Mathf.Max(0, health);
