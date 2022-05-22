@@ -1,5 +1,7 @@
 using UnityEngine;
-[CreateAssetMenu]
+[CreateAssetMenu(
+    menuName = "Configs/Wave"
+    )]
 public class WaveConfig : ScriptableObject
 {
     public WaveData[] waveDatas;
@@ -10,5 +12,4 @@ public class WaveData
 {
     public int[] enemiesQuantity;
     public int staticObstacleQuantity;
-    public int dynamicObstacleQuantity;
 }

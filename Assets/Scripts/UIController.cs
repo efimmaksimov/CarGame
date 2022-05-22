@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
@@ -33,7 +32,6 @@ public class UIController : MonoBehaviour
 
     public void SetReward(int coins)
     {
-        Debug.Log("point3");
         reward.text = coins.ToString();
         doubleReward.text = (coins * 2).ToString();
     }
@@ -42,12 +40,6 @@ public class UIController : MonoBehaviour
     {
         gameOverText.text = "Игра окончена";
     }
-
-    public void ToGarage()
-    {
-        SceneManager.LoadScene(0);
-    }
-
     #region events
 
     private void OnEnemyDeath(EnemyType type)

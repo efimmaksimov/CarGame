@@ -3,57 +3,45 @@ using UnityEngine;
 
 public class MoneyBank : MonoBehaviour, IMoneyBank
 {
-    private static MoneyBank instance;
-
-    private int coins = 50000;
-
     public event Action OnMoneyChanged;
 
-    public static MoneyBank Instance
-    {
-        get
-        {
-            if (instance == null) instance = new GameObject("GameManager").AddComponent<MoneyBank>(); //create game manager object if required
-            return instance;
-        }
-    }
+    private int money;
 
     void Awake()
     {
-        if (instance)
-            DestroyImmediate(gameObject);
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        DontDestroyOnLoad(gameObject);
     }
     public bool CanSpendMoney(int price)
     {
-        return coins >= price;
+        return money >= price;
     }
 
     public void SpendMoney(int price)
     {
-        if (coins < price)
+        if (money < price)
         {
-            throw new System.Exception($"Price:{price} is more, than number of coins:{coins}");
+            throw new System.Exception($"Price:{price} is more, than number of coins:{money}");
         }
         else
         {
-            coins -= price;
+            money -= price;
             OnMoneyChanged?.Invoke();
         }
     }
 
     public void AddMoney(int money)
     {
-        coins += money;
-        //OnMoneyChanged?.Invoke();
+        this.money += money;
+        OnMoneyChanged?.Invoke();
     }
 
     public int GetMoney()
     {
-        return coins;
+        return money;
+    }
+
+    public void Setup(int money)
+    {
+        this.money = money;
     }
 }

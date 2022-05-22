@@ -3,9 +3,9 @@ using UnityEngine;
 public sealed class PlayerUpgradeLevelUpper
 {
     private readonly IMoneyBank moneyBank;
-    public PlayerUpgradeLevelUpper()
+    public PlayerUpgradeLevelUpper(IMoneyBank moneyBank)
     {
-        this.moneyBank = MoneyBank.Instance;
+        this.moneyBank = moneyBank;
     }
 
     public bool CanLevelUp(PlayerUpgrade upgrade)
@@ -21,8 +21,8 @@ public sealed class PlayerUpgradeLevelUpper
             throw new System.Exception($"Can not level up {upgrade.Id}");
         }
         int price = upgrade.NextPrice;
-        moneyBank.SpendMoney(price);
 
         upgrade.IncrementLevel();
+        moneyBank.SpendMoney(price);
     }
 }

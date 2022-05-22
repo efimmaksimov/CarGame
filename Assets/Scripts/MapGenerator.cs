@@ -27,11 +27,5 @@ public class MapGenerator : MonoBehaviour
             GameObject staticObstacle = Instantiate(staticObstaclePrefab, position, Quaternion.identity);
             staticObstacle.transform.localScale = new Vector3(scale, scale, scale);
         }
-
-        for (int i = 0; i < waveConfig.waveDatas[WaveProgress.instance.CurrentWave].dynamicObstacleQuantity; i++)
-        {
-            Vector3 position = new Vector3(Random.Range(-mapSize, mapSize), dynamicObstaclePrefab.transform.localScale.y / 2, Random.Range(-mapSize, mapSize));
-            Instantiate(dynamicObstaclePrefab, position, Quaternion.identity);
-        }
     }
 }

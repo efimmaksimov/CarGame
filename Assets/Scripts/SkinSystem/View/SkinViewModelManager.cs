@@ -10,7 +10,7 @@ public class SkinViewModelManager : MonoBehaviour
     private void Start()
     {
         skinManager = ServiceLocator.GetService<SkinManager>();
-        moneyBank = MoneyBank.Instance;
+        moneyBank = ServiceLocator.GetService<MoneyBank>();
         Initialize();
     }
 

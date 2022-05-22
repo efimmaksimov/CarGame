@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class SkinManager : MonoBehaviour, ISkinManager
      public void Buy(ISkin skin)
     {
         skinBuyer.Buy((Skin)skin);
+        Select(skin);
     }
 
     public bool CanBuy(ISkin skin)
@@ -39,6 +41,12 @@ public class SkinManager : MonoBehaviour, ISkinManager
         return allSkins;
     }
 
+    public ISkin GetSelectedSkin()
+    {
+        //Debug.Log(selectedSkin.Id);
+        return selectedSkin;
+    }
+
     private void Awake()
     {
         int[] allPrices = config.GetAllPrices();
@@ -48,10 +56,10 @@ public class SkinManager : MonoBehaviour, ISkinManager
             Skin skin = new Skin(allPrices[i], i);
             allSkins[i] = skin;
         }
-        var moneyBank = MoneyBank.Instance;
+        var moneyBank = ServiceLocator.GetService<MoneyBank>();
         skinBuyer = new SkinBuyer(moneyBank);
-
         selectedSkin = allSkins[0];
         allSkins[0].Setup(true);
+        DontDestroyOnLoad(gameObject);
     }
 }

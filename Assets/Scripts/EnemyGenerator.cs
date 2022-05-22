@@ -19,6 +19,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         player = FindObjectOfType<Player>(false);
         StartCoroutine(Respawn());
+        UnityEngine.Debug.Log(WaveProgress.instance.CurrentWave);
     }
 
     private void RespawnEnemy(GameObject prefab)
@@ -43,17 +44,13 @@ public class EnemyGenerator : MonoBehaviour
         }
     }
 
-    public void OnEnemyDeath()
-    {
-        Debug.Log("Death");
-    }
-
     public void DeathEnemy()
     {
         enemyCounter--;
         if (enemyCounter == 0)
         {
             Messenger.Broadcast(GameEvents.gameOver);
+            WaveProgress.instance.CompleteWave();
         }
     }
 }

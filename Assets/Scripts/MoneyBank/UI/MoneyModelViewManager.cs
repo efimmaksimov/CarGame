@@ -9,7 +9,7 @@ public class MoneyModelViewManager : MonoBehaviour
 
     private void Start()
     {
-        moneyBank = MoneyBank.Instance;
+        moneyBank = ServiceLocator.GetService<MoneyBank>();
         modelView = new MoneyModelView(moneyBank, view);
         modelView.Initialize();
     }

@@ -1,5 +1,7 @@
 using UnityEngine;
-
+using InstantGamesBridge;
+using InstantGamesBridge.Modules.Advertisement;
+using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     [SerializeField] private UIController controllerUI;
@@ -7,18 +9,21 @@ public class GameOver : MonoBehaviour
 
     private IMoneyBank moneyBank;
     private int reward;
+    private bool isRewardedAdShown;
     private void Awake()
     {
         Messenger.AddListener(GameEvents.gameOver, OnGameOver);
+        Bridge.advertisement.rewardedStateChanged += OnRewardedStateChanged;
     }
     private void OnDestroy()
     {
         Messenger.RemoveListener(GameEvents.gameOver, OnGameOver);
+        Bridge.advertisement.rewardedStateChanged -= OnRewardedStateChanged;
     }
 
     private void Start()
     {
-        moneyBank = MoneyBank.Instance;
+        moneyBank = ServiceLocator.GetService<MoneyBank>();
     }
 
     private void OnGameOver()
@@ -28,8 +33,52 @@ public class GameOver : MonoBehaviour
         controllerUI.SetReward(reward);
     }
 
-    public void GiveRewardToPlayer()
+    public void GoToGarage()
     {
         moneyBank.AddMoney(reward);
+        if (!isRewardedAdShown) Bridge.advertisement.ShowInterstitial();
+        SceneManager.LoadSceneAsync(1);
     }
+
+    #region RewardedAd
+    public void ShowRewardedAd()
+    {
+        Bridge.advertisement.ShowRewarded();
+    }
+
+    private void OnRewardedStateChanged(RewardedState state)
+    {
+        switch (state)
+        {
+            case RewardedState.Opened:
+                OnOpen();
+                break;
+            case RewardedState.Rewarded:
+                OnReward();
+                break;
+            case RewardedState.Closed:
+                OnClose();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void OnOpen()
+    {
+        Time.timeScale = 0;
+        AudioListener.pause = true;
+    }
+    private void OnReward()
+    {
+        reward *= 2;
+        isRewardedAdShown = true;
+    }
+    private void OnClose()
+    {
+        Time.timeScale = 1;
+        AudioListener.pause = false;
+        GoToGarage();
+    }
+    #endregion
 }

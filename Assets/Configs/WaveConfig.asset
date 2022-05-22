@@ -16,10 +16,10 @@ MonoBehaviour:
   - enemiesQuantity: 010000000000000000000000
     staticObstacleQuantity: 3
     dynamicObstacleQuantity: 0
-  - enemiesQuantity: 
+  - enemiesQuantity: 000000000200000000000000
     staticObstacleQuantity: 0
     dynamicObstacleQuantity: 0
-  - enemiesQuantity: 
+  - enemiesQuantity: 010000000100000001000000
     staticObstacleQuantity: 0
     dynamicObstacleQuantity: 0
   - enemiesQuantity: 

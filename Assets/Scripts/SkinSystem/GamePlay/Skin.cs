@@ -24,9 +24,7 @@ public class Skin : ISkin
     }
     public void Buy()
     {
-        Debug.Log(OnBuy.Target.ToString());
         Purchased = true;
-        Select();
         OnBuy?.Invoke();
     }
 

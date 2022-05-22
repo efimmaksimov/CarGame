@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SkinViewModel
@@ -8,9 +9,9 @@ public class SkinViewModel
     private IMoneyBank moneyBank;
     private int currentSkinIndex;
 
-    public SkinViewModel(ISkin[] skin, SkinView view)
+    public SkinViewModel(ISkin[] skins, SkinView view)
     {
-        this.skins = skin;
+        this.skins = skins;
         this.view = view;
     }
 
@@ -23,7 +24,10 @@ public class SkinViewModel
         view.BuyButton.onClick.AddListener(OnBuyButtonClicked);
         view.ArrowLeft.onClick.AddListener(OnArrowLeft);
         view.ArrowRight.onClick.AddListener(OnArrowRight);
+
+        currentSkinIndex = Array.IndexOf(skins, skinManager.GetSelectedSkin());
         skins[currentSkinIndex].OnBuy += OnBuy;
+        view.ShowAnotherSkin(currentSkinIndex);
 
         UpdateState();
     }
@@ -62,6 +66,10 @@ public class SkinViewModel
         skins[currentSkinIndex].OnBuy -= OnBuy;
         currentSkinIndex = (currentSkinIndex + direction + skins.Length) % skins.Length;
         skins[currentSkinIndex].OnBuy += OnBuy;
+        if (skinManager.CanSelect(skins[currentSkinIndex]))
+        {
+            skinManager.Select(skins[currentSkinIndex]);
+        }
         view.ShowAnotherSkin(currentSkinIndex);
         UpdateState();
     }
@@ -75,13 +83,11 @@ public class SkinViewModel
     {
         if (skinManager.CanBuy(skins[currentSkinIndex]))
         {
-            Debug.Log("point1");
             skinManager.Buy(skins[currentSkinIndex]);
         } 
     }
     private void OnBuy()
     {
-        Debug.Log("point4");
         UpdateState();
     }
     private void OnArrowLeft()

@@ -50,6 +50,8 @@ public class PlayerUpgradesManager : MonoBehaviour, IPlayerUpgradesManager
             var upgrade = (PlayerUpgrade)config.InstantiateUpgrade(); // var = PlayerUpgrade
             upgrades.Add(config.id, upgrade);
         }
-        levelUpper = new PlayerUpgradeLevelUpper();
+        IMoneyBank moneyBank = ServiceLocator.GetService<MoneyBank>();
+        levelUpper = new PlayerUpgradeLevelUpper(moneyBank);
+        DontDestroyOnLoad(gameObject);
     }
 }

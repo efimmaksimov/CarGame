@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CoinCounter : MonoBehaviour
 {
-    [SerializeField] private int[] coinsForEnemy;
+    [SerializeField] MoneyForEnemyConfig moneyForEnemyConfig;
 
     private int coins;
     private void Awake()
@@ -17,13 +17,11 @@ public class CoinCounter : MonoBehaviour
 
     public void OnEnemyDeath(EnemyType type)
     {
-        coins += coinsForEnemy[(int)type];
-        Debug.Log("point1");
+        coins += moneyForEnemyConfig.GetMoneyForEnemy(type);
     }
 
     public int GetReward()
     {
-        Debug.Log("point2");
         return coins;
     }
 }

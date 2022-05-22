@@ -21,8 +21,8 @@ public class SkinBuyer
             throw new System.Exception($"Can not buy {skin.Id}");
         }
         int price = skin.Price;
-        moneyBank.SpendMoney(price);
-        Debug.Log("point2");
+        
         skin.Buy();
+        moneyBank.SpendMoney(price);
     }
 }

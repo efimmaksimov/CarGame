@@ -6,4 +6,5 @@ public interface ISkinManager
     void Select(ISkin skin);
     ISkin GetSkin(int id);
     ISkin[] GetAllSkins();
+    ISkin GetSelectedSkin();
 }

@@ -1,22 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using InstantGamesBridge;
 
-public class WaveProgress : MonoBehaviour
+public class WaveProgress : Singleton<WaveProgress>
 {
-    public static WaveProgress instance;
-
+    private const string KEY = "waveProgress";
     public int CurrentWave { get; private set; }
-    private void Awake()
+
+    private void Start()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        LoadWaveProgress();
+    }
+    public void CompleteWave()
+    {
+        CurrentWave++;
+        SaveWaveProgress();
+    }
+
+    private void SaveWaveProgress()
+    {
+        Bridge.game.SetData(KEY, CurrentWave);
+    }
+
+    private void LoadWaveProgress()
+    {
+        int currentWave;
+        Bridge.game.GetData(KEY, (succes, data) => {
+            if (succes && data != null)
+            {
+                currentWave = int.Parse(data);
+            }
+            else
+            {
+                currentWave = 0;
+            }
+            CurrentWave = currentWave;
+            UnityEngine.Debug.Log(CurrentWave);
+        });
     }
 }
