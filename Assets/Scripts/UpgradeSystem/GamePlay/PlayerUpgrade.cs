@@ -27,6 +27,7 @@ public abstract class PlayerUpgrade : IPlayerUpgrade
     public void Setup(int level)
     {
         this.Level = level;
+        OnLevelUp?.Invoke(Level);
         Initialize();
     }
 

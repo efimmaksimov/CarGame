@@ -1,5 +1,7 @@
 ﻿#if UNITY_WEBGL
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 #if !UNITY_EDITOR
 using System.Runtime.InteropServices;
@@ -23,21 +25,40 @@ namespace InstantGamesBridge.Modules.Game
 #endif
 
         private Action<bool, string> _getDataCallback;
+        //private Queue<Action<bool, string>> _getDataCallbacks = new Queue<Action<bool, string>>();
 
         private Action<bool> _setDataCallback;
 
         private Action<bool> _deleteDataCallback;
 
+        private bool _dataIsLoading;
+
 
         public void GetData(string key, Action<bool, string> onComplete)
         {
+            if (_dataIsLoading)
+            {
+                StartCoroutine(WaitForLoading(key, onComplete));
+                return;
+            }
             _getDataCallback = onComplete;
+            _dataIsLoading = true;
+            //_getDataCallbacks.Enqueue(onComplete);
 #if !UNITY_EDITOR
             InstantGamesBridgeGetGameData(key);
 #else
             var data = PlayerPrefs.GetString($"{_gameDataEditorPlayerPrefsPrefix}_{key}", null);
             OnGetGameDataCompletedSuccess(data);
 #endif
+        }
+
+        private IEnumerator WaitForLoading(string key, Action<bool, string> onComplete)
+        {
+            while (_dataIsLoading)
+            {
+                yield return null;
+            }
+            GetData(key, onComplete);
         }
 
         public void SetData(string key, string value, Action<bool> onComplete = null)
@@ -76,8 +97,10 @@ namespace InstantGamesBridge.Modules.Game
         // Called from JS
         private void OnGetGameDataCompletedSuccess(string result)
         {
+            //Action<bool, string> getDataCallback = _getDataCallbacks.Dequeue();
             _getDataCallback?.Invoke(true, string.IsNullOrEmpty(result) ? null : result);
             _getDataCallback = null;
+            _dataIsLoading = false;
         }
 
         private void OnGetGameDataCompletedFailed()

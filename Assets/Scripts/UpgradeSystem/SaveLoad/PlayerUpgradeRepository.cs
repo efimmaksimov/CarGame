@@ -10,6 +10,7 @@ public class PlayerUpgradeRepository
         Bridge.game.GetData(KEY, (succes, data) => {
             if (succes && data != null)
             {
+                UnityEngine.Debug.Log($"Upgrades: {data}");
                 upgrades = JsonHelper.FromJson<UpgradeSaveData>(data);
             }
             else

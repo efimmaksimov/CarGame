@@ -26,6 +26,7 @@ public class WaveProgress : Singleton<WaveProgress>
         Bridge.game.GetData(KEY, (succes, data) => {
             if (succes && data != null)
             {
+                UnityEngine.Debug.Log($"Progress: {data}");
                 currentWave = int.Parse(data);
             }
             else
@@ -33,7 +34,12 @@ public class WaveProgress : Singleton<WaveProgress>
                 currentWave = 0;
             }
             CurrentWave = currentWave;
-            UnityEngine.Debug.Log(CurrentWave);
         });
+    }
+
+    //Debug
+    public void SetProgress(int wave)
+    {
+        CurrentWave = wave;
     }
 }

@@ -10,6 +10,7 @@ public class SkinRepository
         Bridge.game.GetData(KEY, (succes, data) => {
             if (succes && data != null)
             {
+                UnityEngine.Debug.Log($"Skins: {data}");
                 skins = JsonHelper.FromJson<SkinSaveData>(data);
             }
             else

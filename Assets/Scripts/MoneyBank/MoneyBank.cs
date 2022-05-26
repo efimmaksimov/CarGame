@@ -43,5 +43,6 @@ public class MoneyBank : MonoBehaviour, IMoneyBank
     public void Setup(int money)
     {
         this.money = money;
+        OnMoneyChanged?.Invoke();
     }
 }

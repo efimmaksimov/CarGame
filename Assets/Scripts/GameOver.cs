@@ -67,7 +67,7 @@ public class GameOver : MonoBehaviour
     private void OnOpen()
     {
         Time.timeScale = 0;
-        AudioListener.pause = true;
+        AudioListener.volume = 0;
     }
     private void OnReward()
     {
@@ -77,7 +77,7 @@ public class GameOver : MonoBehaviour
     private void OnClose()
     {
         Time.timeScale = 1;
-        AudioListener.pause = false;
+        AudioListener.volume = 1;
         GoToGarage();
     }
     #endregion

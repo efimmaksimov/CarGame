@@ -21,6 +21,7 @@ public class Skin : ISkin
     public void Setup(bool purchased)
     {
         Purchased = purchased;
+        OnBuy?.Invoke();
     }
     public void Buy()
     {
