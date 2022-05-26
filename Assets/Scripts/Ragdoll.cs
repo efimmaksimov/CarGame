@@ -2,9 +2,11 @@
 
 public class Ragdoll : MonoBehaviour
 {
-    public int timer;
-    private void Start()
+    [SerializeField] private int timer;
+
+    public void Initialize(AudioClip clip, EnemyType type, float pitch)
     {
+        AudioManager.Instance.PlaySound(clip, pitch, (SoundChanel)type);
         Destroy(gameObject, timer);
     }
 

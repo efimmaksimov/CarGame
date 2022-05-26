@@ -30,7 +30,7 @@ public class MoneySaveLoader : MonoBehaviour
             }
             else
             {
-                money = 393939;
+                money = 0;
             }
             OnLoadMoney(money);
         });

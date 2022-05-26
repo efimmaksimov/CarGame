@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HealthUpgradeConfig
   m_EditorClassIdentifier: 
   id: Health
-  basePrise: 1
-  multiplier: 3
-  baseHealth: 300
-  bonusHealth: 50
+  basePrise: 1000
+  additionalPrice: 750
+  baseHealth: 200
+  bonusHealth: 40

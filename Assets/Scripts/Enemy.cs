@@ -8,20 +8,22 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private EnemyType type;
 
-    [SerializeField] private AudioClip death;
-    [SerializeField] private AudioClip attack;
+    [Header("Sound")]
+    [Range(-3f, 3f)]
+    [SerializeField] private float pitch;
+    [SerializeField] private AudioClip attackClip;
+    [SerializeField] private AudioClip deathClip;
+    [SerializeField] private AudioClip damageClip;
     [Space]
 
     //public Player player;
     [SerializeField] private GameObject ragdollPrefab;
     [Header("Stats")]
     [SerializeField] private int damage;
-    [SerializeField] private int health;
     [SerializeField] private float cooldown;
 
     private bool mayAttack = true;
     private bool isFalling;
-    private AudioSource audioSource;
     private int frameCounter = 0;
     private EnemyGenerator generator;
     private Vector3 lastPos;
@@ -32,7 +34,6 @@ public class Enemy : MonoBehaviour
     
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
         generator = GetComponentInParent<EnemyGenerator>();
         anim = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -46,12 +47,12 @@ public class Enemy : MonoBehaviour
             return;
         }
         frameCounter++;
-        if (frameCounter > 1)
+        if (frameCounter > 3)
         {
             navMeshAgent.SetDestination(target.transform.position);
             if (Vector3.Distance(transform.position, target.transform.position) < navMeshAgent.stoppingDistance)
             {
-                if (target.Speed < 3 && mayAttack) StartAttackAnimation();
+                if (target.Speed < 12 && mayAttack) StartAttackAnimation();
             }
             frameCounter = 0;
         }
@@ -71,8 +72,7 @@ public class Enemy : MonoBehaviour
 
     public void Attack()
     {
-        audioSource.pitch = 1 + Random.Range(-0.1f, 0.1f);
-        audioSource.PlayOneShot(attack);
+        AudioManager.Instance.PlaySound(attackClip, pitch, (SoundChanel)type);
         target.TakeDamage(damage);
         mayAttack = false;
         StartCoroutine(CooldownAttack());
@@ -87,15 +87,17 @@ public class Enemy : MonoBehaviour
     public void Fall()
     {
         anim.SetTrigger("Fall");
+        AudioManager.Instance.PlaySound(damageClip, pitch, (SoundChanel)type);
         isFalling = true;
     }
 
     public void Death()
     {
-        Instantiate(ragdollPrefab, transform.position, transform.rotation);
+        Ragdoll ragdoll = Instantiate(ragdollPrefab, transform.position, transform.rotation).GetComponent<Ragdoll>();
+        ragdoll.Initialize(deathClip, type, pitch);
         gameObject.SetActive(false);
         Messenger<EnemyType>.Broadcast(GameEvents.enemyDeath, type);
-        generator.DeathEnemy();
+        generator.DeathEnemy(this);
     }
 
     public void StandUp()

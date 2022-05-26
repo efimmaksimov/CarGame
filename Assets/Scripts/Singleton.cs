@@ -5,7 +5,7 @@
 
         private static bool _isApplicationQuitting;
 
-        public static T instance
+        public static T Instance
         {
             get
             {

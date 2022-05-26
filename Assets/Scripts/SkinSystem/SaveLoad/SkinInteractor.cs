@@ -8,7 +8,7 @@ public class SkinInteractor : MonoBehaviour
         repository = new SkinRepository();
         skinManager = ServiceLocator.GetService<SkinManager>();
         repository.LoadSkins(OnLoadSkins);
-        GameSaver.instance.AddListener(OnSaveGame);
+        GameSaver.Instance.AddListener(OnSaveGame);
         DontDestroyOnLoad(gameObject);
     }
 

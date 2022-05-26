@@ -4,7 +4,7 @@ public abstract class PlayerUpgrade : IPlayerUpgrade
 {
     public event Action<int> OnLevelUp;
 
-    public int Level { get; private set; } = 1;
+    public int Level { get; private set; } = 0;
     public string Id 
     {
         get { return this.config.id; }
@@ -27,6 +27,7 @@ public abstract class PlayerUpgrade : IPlayerUpgrade
     public void Setup(int level)
     {
         this.Level = level;
+        Initialize();
     }
 
     public void IncrementLevel()

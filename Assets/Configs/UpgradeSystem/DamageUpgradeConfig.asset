@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DamageUpgradeConfig
   m_EditorClassIdentifier: 
   id: Damage
-  basePrise: 5
-  multiplier: 2
+  basePrise: 1000
+  additionalPrice: 750
   baseDamage: 30
-  bonusDamage: 3
+  bonusDamage: 5

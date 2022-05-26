@@ -11,6 +11,6 @@ public class GameSaverOnMoneyChanged : MonoBehaviour
 
     private void SaveGame()
     {
-        GameSaver.instance.SaveGame();
+        GameSaver.Instance.SaveGame();
     }
 }

@@ -48,11 +48,11 @@ namespace InstantGamesBridge
                 return;
             }
 
-            instance._initializationCallback = onComplete;
+            Instance._initializationCallback = onComplete;
 #if !UNITY_EDITOR
             InstantGamesBridgeInitialize();
 #else
-            instance.OnInitializationCompleted("true");
+            Instance.OnInitializationCompleted("true");
 #endif
         }
 

@@ -16,11 +16,13 @@ public class MapGenerator : MonoBehaviour
     private void Start()
     {
         GenerateObstacles();
+        Debug.Log(PlayerStats.instance.Damage);
+        Debug.Log(PlayerStats.instance.Health);
     }
 
     private void GenerateObstacles()
     {
-        for (int i = 0; i < waveConfig.waveDatas[WaveProgress.instance.CurrentWave].staticObstacleQuantity; i++)
+        for (int i = 0; i < waveConfig.GetWaveData(WaveProgress.Instance.CurrentWave).staticObstacleQuantity; i++)
         {
             int scale = Random.Range(minStaticObstacleSize, maxStaticObstacleSize);
             Vector3 position = new Vector3(Random.Range(-mapSize, mapSize), scale / 2, Random.Range(-mapSize, mapSize));

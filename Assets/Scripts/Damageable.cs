@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Damageable : MonoBehaviour 
@@ -6,6 +7,7 @@ public class Damageable : MonoBehaviour
     [SerializeField] private float damageForceThreshold = 1f;
 
     private Enemy enemy;
+    private bool isDamageable = true;
 
     public int CurrentHealth { get; private set; }
 
@@ -17,12 +19,18 @@ public class Damageable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!isDamageable)
+        {
+            return;
+        }
         Player player;
         if (other.TryGetComponent(out player))
         {
             if (player.Speed > damageForceThreshold)
             {
-                CurrentHealth -= (int)((player.Speed - damageForceThreshold) / 20 * player.Damage);
+                int damage = (int)((player.Speed - damageForceThreshold) / 10 * player.Damage);
+                DamageUI.Instance.AddText(damage, transform.position, true);
+                CurrentHealth -= damage;
                 CurrentHealth = Mathf.Max(0, CurrentHealth);
                 if (CurrentHealth == 0)
                 {
@@ -31,8 +39,14 @@ public class Damageable : MonoBehaviour
                 else
                 {
                     enemy.Fall();
+                    isDamageable = false;
                 }
             }
         }
+    }
+
+    public void BecomeDamageable()
+    {
+        isDamageable = true;
     }
 }

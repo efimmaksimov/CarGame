@@ -24,7 +24,7 @@ public class MoneyForAd : MonoBehaviour
     private void Start()
     {
         moneyBank = ServiceLocator.GetService<MoneyBank>();
-        int[] enemiesQuantityOfCurrentWave = waveConfig.waveDatas[WaveProgress.instance.CurrentWave].enemiesQuantity;
+        int[] enemiesQuantityOfCurrentWave = waveConfig.GetWaveData(WaveProgress.Instance.CurrentWave).enemiesQuantity;
         for (int i = 0; i < enemiesQuantityOfCurrentWave.Length; i++)
         {
             reward += enemiesQuantityOfCurrentWave[i] * moneyForEnemyConfig.GetMoneyForEnemy((EnemyType)i);

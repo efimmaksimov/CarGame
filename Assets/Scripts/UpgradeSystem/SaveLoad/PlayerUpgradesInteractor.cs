@@ -8,7 +8,7 @@ public class PlayerUpgradesInteractor : MonoBehaviour
         repository = new PlayerUpgradeRepository();
         playerUpgradesManager = ServiceLocator.GetService<PlayerUpgradesManager>();
         repository.LoadUpgrades(OnLoadUpgrades);
-        GameSaver.instance.AddListener(OnSaveGame);
+        GameSaver.Instance.AddListener(OnSaveGame);
         DontDestroyOnLoad(gameObject);
     }
 

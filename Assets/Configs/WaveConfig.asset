@@ -13,18 +13,66 @@ MonoBehaviour:
   m_Name: WaveConfig
   m_EditorClassIdentifier: 
   waveDatas:
-  - enemiesQuantity: 010000000000000000000000
+  - enemiesQuantity: 030000000000000000000000
+    staticObstacleQuantity: 0
+  - enemiesQuantity: 020000000100000000000000
+    staticObstacleQuantity: 0
+  - enemiesQuantity: 030000000100000000000000
+    staticObstacleQuantity: 2
+  - enemiesQuantity: 040000000200000000000000
+    staticObstacleQuantity: 1
+  - enemiesQuantity: 000000000300000002000000
+    staticObstacleQuantity: 2
+  - enemiesQuantity: 040000000300000001000000
+    staticObstacleQuantity: 1
+  - enemiesQuantity: 020000000400000002000000
     staticObstacleQuantity: 3
-    dynamicObstacleQuantity: 0
-  - enemiesQuantity: 000000000200000000000000
-    staticObstacleQuantity: 0
-    dynamicObstacleQuantity: 0
-  - enemiesQuantity: 010000000100000001000000
-    staticObstacleQuantity: 0
-    dynamicObstacleQuantity: 0
-  - enemiesQuantity: 
-    staticObstacleQuantity: 0
-    dynamicObstacleQuantity: 0
-  - enemiesQuantity: 
-    staticObstacleQuantity: 0
-    dynamicObstacleQuantity: 0
+  - enemiesQuantity: 030000000400000003000000
+    staticObstacleQuantity: 2
+  - enemiesQuantity: 050000000000000004000000
+    staticObstacleQuantity: 4
+  - enemiesQuantity: 050000000600000000000000
+    staticObstacleQuantity: 2
+  - enemiesQuantity: 050000000500000003000000
+    staticObstacleQuantity: 2
+  - enemiesQuantity: 040000000600000004000000
+    staticObstacleQuantity: 3
+  - enemiesQuantity: 0a0000000300000002000000
+    staticObstacleQuantity: 5
+  - enemiesQuantity: 050000000a00000002000000
+    staticObstacleQuantity: 2
+  - enemiesQuantity: 00000000050000000a000000
+    staticObstacleQuantity: 1
+  - enemiesQuantity: 070000000700000007000000
+    staticObstacleQuantity: 2
+  - enemiesQuantity: 0a0000000800000003000000
+    staticObstacleQuantity: 6
+  - enemiesQuantity: 050000000a0000000a000000
+    staticObstacleQuantity: 2
+  - enemiesQuantity: 0a0000000a00000008000000
+    staticObstacleQuantity: 2
+  - enemiesQuantity: 000000002300000000000000
+    staticObstacleQuantity: 1
+  - enemiesQuantity: 140000000600000003000000
+    staticObstacleQuantity: 2
+  - enemiesQuantity: 010000000100000019000000
+    staticObstacleQuantity: 2
+  - enemiesQuantity: 0b0000000b0000000b000000
+    staticObstacleQuantity: 2
+  - enemiesQuantity: 0f0000000f00000007000000
+    staticObstacleQuantity: 3
+  - enemiesQuantity: 140000000a0000000a000000
+    staticObstacleQuantity: 2
+  - enemiesQuantity: 0c0000000f0000000f000000
+    staticObstacleQuantity: 2
+  - enemiesQuantity: 280000000000000000000000
+    staticObstacleQuantity: 5
+  - enemiesQuantity: 040000001000000015000000
+    staticObstacleQuantity: 2
+  - enemiesQuantity: 0f0000001400000014000000
+    staticObstacleQuantity: 2
+  - enemiesQuantity: 140000001400000014000000
+    staticObstacleQuantity: 3
+  lastWaveData:
+    enemiesQuantity: 140000001400000014000000
+    staticObstacleQuantity: 3

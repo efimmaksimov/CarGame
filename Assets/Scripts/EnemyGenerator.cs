@@ -9,17 +9,25 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField] private WaveConfig waveConfig;
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private int mapSize;
-    [SerializeField] private int cooldownRespawn;
+    [SerializeField] private float cooldownRespawn;
     private Player player;
 
-    //private List<Enemy> activeEnemies = new List<Enemy>();
+    private List<Enemy> activeEnemies = new List<Enemy>();
     private int enemyCounter;
 
+    private void Awake()
+    {
+        Messenger.AddListener(GameEvents.gameOver, DisableEnemies);
+    }
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvents.gameOver, DisableEnemies);
+    }
     void Start()
     {
         player = FindObjectOfType<Player>(false);
         StartCoroutine(Respawn());
-        UnityEngine.Debug.Log(WaveProgress.instance.CurrentWave);
+        UnityEngine.Debug.Log(WaveProgress.Instance.CurrentWave);
     }
 
     private void RespawnEnemy(GameObject prefab)
@@ -28,7 +36,7 @@ public class EnemyGenerator : MonoBehaviour
         Enemy enemy = Instantiate(prefab, position, Random.rotation, transform).GetComponent<Enemy>();
         enemy.target = player;
         enemyCounter++;
-        //activeEnemies.Add(enemy);
+        activeEnemies.Add(enemy);
 
     }
 
@@ -36,7 +44,8 @@ public class EnemyGenerator : MonoBehaviour
     {
         for (int j = 0; j < enemyPrefabs.Length; j++)
         {
-            for (int i = 0; i < waveConfig.waveDatas[WaveProgress.instance.CurrentWave].enemiesQuantity[j]; i++)
+            Debug.Log(waveConfig.GetWaveData(WaveProgress.Instance.CurrentWave).enemiesQuantity[j]);
+            for (int i = 0; i < waveConfig.GetWaveData(WaveProgress.Instance.CurrentWave).enemiesQuantity[j]; i++)
             {
                 RespawnEnemy(enemyPrefabs[j]);
                 yield return new WaitForSeconds(cooldownRespawn);
@@ -44,13 +53,22 @@ public class EnemyGenerator : MonoBehaviour
         }
     }
 
-    public void DeathEnemy()
+    public void DeathEnemy(Enemy enemy)
     {
+        activeEnemies.Remove(enemy);
         enemyCounter--;
         if (enemyCounter == 0)
         {
             Messenger.Broadcast(GameEvents.gameOver);
-            WaveProgress.instance.CompleteWave();
+            WaveProgress.Instance.CompleteWave();
+        }
+    }
+
+    private void DisableEnemies()
+    {
+        for (int i = 0; i < activeEnemies.Count; i++)
+        {
+            activeEnemies[i].enabled = false;
         }
     }
 }

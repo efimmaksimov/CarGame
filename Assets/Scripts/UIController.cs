@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private Text gameOverText;
     [SerializeField] private Text reward;
     [SerializeField] private Text doubleReward;
+    [SerializeField] private Text currentWave;
 
 
     private void Awake()
@@ -26,14 +27,32 @@ public class UIController : MonoBehaviour
     {
         for (int i = 0; i < enemyCounters.Length; i++)
         {
-            enemyCounters[i].text = config.waveDatas[WaveProgress.instance.CurrentWave].enemiesQuantity[i].ToString();
+            int quantity = config.GetWaveData(WaveProgress.Instance.CurrentWave).enemiesQuantity[i];
+            if (quantity == 0)
+            {
+                enemyCounters[i].transform.GetComponentInParent<LayoutElement>().gameObject.SetActive(false);
+            }
+            else
+            {
+                enemyCounters[i].text = quantity.ToString();
+            }
+            
         }
+        currentWave.text = $"Волна {WaveProgress.Instance.CurrentWave + 1}";
     }
 
     public void SetReward(int coins)
     {
         reward.text = coins.ToString();
-        doubleReward.text = (coins * 2).ToString();
+        if (coins == 0)
+        {
+            doubleReward.transform.parent.gameObject.SetActive(false);
+        }
+        else
+        {
+            doubleReward.text = (coins * 2).ToString();
+        }
+        
     }
 
     public void ChangeGameOverText()

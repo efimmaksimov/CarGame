@@ -6,10 +6,11 @@ public class CameraFollow : MonoBehaviour {
 
 	public Transform carTransform;
 	[Range(1, 10)]
-	public float followSpeed = 2;
+	[SerializeField] private float followSpeed = 2;
 	[Range(1, 10)]
-	public float lookSpeed = 5;
-	Vector3 initialCameraPosition;
+	[SerializeField] private float lookSpeed = 5;
+	[SerializeField] private float borderSize;
+	private Vector3 initialCameraPosition;
 
 	void Start(){
 		initialCameraPosition = gameObject.transform.position;
@@ -24,6 +25,9 @@ public class CameraFollow : MonoBehaviour {
 
 		//Move to car
 		Vector3 _targetPos = initialCameraPosition + carTransform.transform.position;
+		_targetPos = new Vector3(Mathf.Clamp(_targetPos.x, initialCameraPosition.x - borderSize, initialCameraPosition.x + borderSize),
+			_targetPos.y, 
+			Mathf.Clamp(_targetPos.z, initialCameraPosition.z - borderSize, initialCameraPosition.z + borderSize));
 		transform.position = Vector3.Lerp(transform.position, _targetPos, followSpeed * Time.deltaTime);
 
 	}
