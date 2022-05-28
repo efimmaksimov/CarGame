@@ -10,7 +10,6 @@ public class TouchControl : MonoBehaviour
     public void CarAccelForward(float amount)
     {
         carScript.accelFwd = amount;
-        carScript.controlMode = ControlMode.touch;
     }
     public void CarAccelBack(float amount)
     {

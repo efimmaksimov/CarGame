@@ -27,6 +27,9 @@ public class Skin : ISkin
     {
         Purchased = true;
         OnBuy?.Invoke();
+#if !UNITY_EDITOR
+        YandexMetrica.EventBuyCar(Id);
+#endif
     }
 
     public void Select()

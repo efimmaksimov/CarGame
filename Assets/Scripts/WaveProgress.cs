@@ -11,6 +11,9 @@ public class WaveProgress : Singleton<WaveProgress>
     }
     public void CompleteWave()
     {
+#if !UNITY_EDITOR
+        YandexMetrica.EventWinWave(CurrentWave);
+#endif
         CurrentWave++;
         SaveWaveProgress();
     }
@@ -26,7 +29,6 @@ public class WaveProgress : Singleton<WaveProgress>
         Bridge.game.GetData(KEY, (succes, data) => {
             if (succes && data != null)
             {
-                UnityEngine.Debug.Log($"Progress: {data}");
                 currentWave = int.Parse(data);
             }
             else

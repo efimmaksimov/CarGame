@@ -26,7 +26,6 @@ public class MoneySaveLoader : MonoBehaviour
         Bridge.game.GetData(KEY, (succes, data) => {
             if (succes && data != null)
             {
-                Debug.Log($"Money: {data}");
                 money = int.Parse(data);
             }
             else

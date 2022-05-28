@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MusicFadeTime: 0.5
   musicVolume: 0.809
-  masterMixerGroup: {fileID: 0}
-  MusicAudioMixerGroup: {fileID: 0}
-  SoundAudioMixerGroup: {fileID: 0}
+  masterMixerGroup: {fileID: 24300002, guid: 2a6bf9b510c46e844885c79a3154bb2c, type: 2}
+  MusicAudioMixerGroup: {fileID: -2570825912824343263, guid: 2a6bf9b510c46e844885c79a3154bb2c, type: 2}
+  SoundAudioMixerGroup: {fileID: -2735936161607858857, guid: 2a6bf9b510c46e844885c79a3154bb2c, type: 2}

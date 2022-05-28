@@ -32,6 +32,9 @@ public class HealthUpgrade : PlayerUpgrade
     protected override void UpdateLevel(int level)
     {
         SetHealth(level);
+#if !UNITY_EDITOR
+        YandexMetrica.EventUpgrade(Id, level);
+#endif
     }
 
     private void SetHealth(int level)

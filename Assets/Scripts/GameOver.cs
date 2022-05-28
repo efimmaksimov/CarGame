@@ -73,6 +73,9 @@ public class GameOver : MonoBehaviour
     {
         reward *= 2;
         isRewardedAdShown = true;
+#if !UNITY_EDITOR
+        YandexMetrica.EventWatchRewarded(1);
+#endif
     }
     private void OnClose()
     {
@@ -80,5 +83,5 @@ public class GameOver : MonoBehaviour
         AudioListener.volume = 1;
         GoToGarage();
     }
-    #endregion
+#endregion
 }

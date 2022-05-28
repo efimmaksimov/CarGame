@@ -1,3 +1,4 @@
+using InstantGamesBridge;
 using UnityEngine;
 
 public class SkinManagerInGame : MonoBehaviour
@@ -12,6 +13,11 @@ public class SkinManagerInGame : MonoBehaviour
         VehicleControl currentSkin = skins[currentSkinIndex];
         currentSkin.gameObject.SetActive(true);
         cameraFollow.carTransform = skins[currentSkinIndex].transform;
-        GetComponent<TouchControl>().SetCarScript(currentSkin);
+        if (Bridge.device.type != InstantGamesBridge.Modules.Device.DeviceType.Desktop)
+        {
+            GetComponent<TouchControl>().SetCarScript(currentSkin);
+            currentSkin.controlMode = ControlMode.touch;
+        }
+        
     }
 }

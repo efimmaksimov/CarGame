@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class PlayerStatsComponent : MonoBehaviour
 {
-    [SerializeField] private Slider healthBar;
+    [SerializeField] private Image healthBar;
     [SerializeField] private UIController controllerUI;
     [SerializeField] private string metalHit;
 
@@ -20,7 +20,7 @@ public class PlayerStatsComponent : MonoBehaviour
         set
         {
             currentHealth = value;
-            healthBar.value = (float)currentHealth / (float)maxHealth;
+            healthBar.fillAmount = (float)currentHealth / (float)maxHealth;
         }
     }
     public int Damage { get; private set; }
@@ -48,6 +48,9 @@ public class PlayerStatsComponent : MonoBehaviour
             vehicle.activeControl = false;
             controllerUI.ChangeGameOverText();
             Messenger.Broadcast(GameEvents.gameOver);
+#if !UNITY_EDITOR
+            YandexMetrica.EventLoseWave(WaveProgress.Instance.CurrentWave);
+#endif
         }
     }
 }

@@ -29,7 +29,7 @@ public class MoneyForAd : MonoBehaviour
         {
             reward += enemiesQuantityOfCurrentWave[i] * moneyForEnemyConfig.GetMoneyForEnemy((EnemyType)i);
         }
-        rewardText.text = reward.ToString();
+        rewardText.text = $"+{reward}";
     }
 
     #region RewardedAd
@@ -64,12 +64,14 @@ public class MoneyForAd : MonoBehaviour
     private void OnReward()
     {
         moneyBank.AddMoney(reward);
-        Debug.Log(reward);
+#if !UNITY_EDITOR
+        YandexMetrica.EventWatchRewarded(2);
+#endif
     }
     private void OnClose()
     {
         Time.timeScale = 1;
         AudioListener.volume = 1;
     }
-    #endregion
+#endregion
 }

@@ -7,17 +7,19 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private int mapSize;
     [SerializeField] private int minStaticObstacleSize;
     [SerializeField] private int maxStaticObstacleSize;
+    [SerializeField] private Vector3 centerOfPlayerZone;
+    [SerializeField] private float radius;
 
     [Space]
 
     [SerializeField] private GameObject staticObstaclePrefab;
-    [SerializeField] private GameObject dynamicObstaclePrefab;
 
     private void Start()
     {
         GenerateObstacles();
-        Debug.Log(PlayerStats.instance.Damage);
-        Debug.Log(PlayerStats.instance.Health);
+#if !UNITY_EDITOR
+        YandexMetrica.EventStartWave(WaveProgress.Instance.CurrentWave);
+#endif
     }
 
     private void GenerateObstacles()
@@ -25,7 +27,12 @@ public class MapGenerator : MonoBehaviour
         for (int i = 0; i < waveConfig.GetWaveData(WaveProgress.Instance.CurrentWave).staticObstacleQuantity; i++)
         {
             int scale = Random.Range(minStaticObstacleSize, maxStaticObstacleSize);
-            Vector3 position = new Vector3(Random.Range(-mapSize, mapSize), scale / 2, Random.Range(-mapSize, mapSize));
+            Vector3 position;
+            do
+            {
+                position = new Vector3(Random.Range(-mapSize, mapSize), scale / 2, Random.Range(-mapSize, mapSize));
+            }
+            while (Vector3.Distance(position, centerOfPlayerZone) < radius);
             GameObject staticObstacle = Instantiate(staticObstaclePrefab, position, Quaternion.identity);
             staticObstacle.transform.localScale = new Vector3(scale, scale, scale);
         }

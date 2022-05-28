@@ -19,10 +19,16 @@ public class WaveConfig : ScriptableObject
             WaveData waveData = new WaveData();
             waveData.enemiesQuantity = (int[])lastWaveData.enemiesQuantity.Clone();
             waveData.staticObstacleQuantity = lastWaveData.staticObstacleQuantity;
-            for (int i = 0; i < waveData.enemiesQuantity.Length; i++)
+            int additionalEnemies = wave - waveDatas.Length + 1;
+            for (int i = 0; i < additionalEnemies; i++)
             {
-                waveData.enemiesQuantity[i] += wave - waveDatas.Length + 1;
+                int index = (i + waveData.enemiesQuantity.Length) % waveData.enemiesQuantity.Length;
+                waveData.enemiesQuantity[index]++;
             }
+            //for (int i = 0; i < waveData.enemiesQuantity.Length; i++)
+            //{
+            //    waveData.enemiesQuantity[i] += wave - waveDatas.Length + 1;
+            //}
             return waveData;
         }
     }

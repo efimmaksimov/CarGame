@@ -27,7 +27,6 @@ public class EnemyGenerator : MonoBehaviour
     {
         player = FindObjectOfType<Player>(false);
         StartCoroutine(Respawn());
-        UnityEngine.Debug.Log(WaveProgress.Instance.CurrentWave);
     }
 
     private void RespawnEnemy(GameObject prefab)
@@ -44,7 +43,6 @@ public class EnemyGenerator : MonoBehaviour
     {
         for (int j = 0; j < enemyPrefabs.Length; j++)
         {
-            Debug.Log(waveConfig.GetWaveData(WaveProgress.Instance.CurrentWave).enemiesQuantity[j]);
             for (int i = 0; i < waveConfig.GetWaveData(WaveProgress.Instance.CurrentWave).enemiesQuantity[j]; i++)
             {
                 RespawnEnemy(enemyPrefabs[j]);

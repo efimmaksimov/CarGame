@@ -50,7 +50,7 @@ public class AudioManager : Singleton<AudioManager>
         soundSources[(int)chanel].outputAudioMixerGroup = _settings.SoundAudioMixerGroup;
         soundSources[(int)chanel].playOnAwake = false;
         soundSources[(int)chanel].priority = 0;
-        soundSources[(int)chanel].mute = _settings.GetSoundMuted();
+        //soundSources[(int)chanel].mute = _settings.GetSoundMuted();
     }
 
     private void CreateMusicObject()
@@ -64,28 +64,31 @@ public class AudioManager : Singleton<AudioManager>
         musicSource.loop = true;
         musicSource.priority = 256;
         musicSource.playOnAwake = false;
-        musicSource.mute = _settings.GetMusicMuted();
+        //musicSource.mute = _settings.GetMusicMuted();
         musicSource.volume = 0.08f;
     }
 
     private void ApplySoundMuted()
     {
-        for (int i = 0; i < soundSources.Length; i++)
-        {
-            if (soundSources[i] != null)
-            {
-                soundSources[i].mute = _settings.GetSoundMuted();
-            }
-        }
-        
+        //for (int i = 0; i < soundSources.Length; i++)
+        //{
+        //    if (soundSources[i] != null)
+        //    {
+        //        soundSources[i].mute = _settings.GetSoundMuted();
+        //    }
+        //}
+        float volume = _settings.GetSoundMuted() ? -80 : 0;
+        masterMixerGroup.audioMixer.SetFloat("VolumeSounds", volume);
     }
 
     private void ApplyMusicMuted()
     {
-        if (musicSource != null)
-        {
-            musicSource.mute = _settings.GetMusicMuted();
-        }
+        //if (musicSource != null)
+        //{
+        //    musicSource.mute = _settings.GetMusicMuted();
+        //}
+        float volume = _settings.GetMusicMuted() ? -80 : 0;
+        masterMixerGroup.audioMixer.SetFloat("VolumeMusic", volume);
     }
 
     public void PlaySound(AudioClip sound, float pitch = 1f, SoundChanel chanel = SoundChanel.First)

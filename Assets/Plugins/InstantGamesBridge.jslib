@@ -265,6 +265,34 @@ mergeInto(LibraryManager.library, {
 
     InstantGamesBridgeLeaderboardShowNativePopup: function(options) {
         window.leaderboardShowNativePopup(UTF8ToString(options))
+    },
+
+    NotBounce: function(){
+        NotBounce()
+    },
+
+    EventStartWave: function(id){
+        EventStartWave(id)
+    },
+
+    EventWinWave: function(id){
+        EventWinWave(id)
+    },
+
+    EventLoseWave: function(id){
+        EventLoseWave(id)
+    },
+
+    EventWatchRewarded: function(id){
+        EventWatchRewarded(id)
+    },
+
+    EventUpgrade: function(id, level){
+        EventUpgrade(UTF8ToString(id), level)
+    },
+
+    EventBuyCar: function(id){
+        EventBuyCar(id)
     }
 
 });

@@ -12,13 +12,13 @@ public class AudioManagerComponent : MonoBehaviour
         AudioManager.Instance.PlayMusic(name);
     }
 
-    public void ToggleMusicMuted()
+    public void ToggleMusicMuted(bool mute)
     {
-        AudioManager.Instance.SetMusicMuted(!AudioManager.Instance.GetMusicMuted());
+        AudioManager.Instance.SetMusicMuted(mute);
     }
 
-    public void ToggleSoundMuted()
+    public void ToggleSoundMuted(bool mute)
     {
-        AudioManager.Instance.SetSoundMuted(!AudioManager.Instance.GetSoundMuted());
+        AudioManager.Instance.SetSoundMuted(mute);
     }
 }

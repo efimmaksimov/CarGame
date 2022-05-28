@@ -8,7 +8,15 @@ public class Initializer : MonoBehaviour
     private AsyncOperation asyncOperation;
     private void Awake()
     {
-        Bridge.Initialize();
+        Bridge.Initialize((succes) => {
+            if (succes)
+            {
+                Bridge.advertisement.ShowInterstitial();
+            }
+        });
+#if !UNITY_EDITOR
+        YandexMetrica.NotBounce();
+#endif
     }
 
     private void Start()

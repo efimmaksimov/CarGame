@@ -32,6 +32,9 @@ public class DamageUpgrade : PlayerUpgrade
     protected override void UpdateLevel(int level)
     {
         SetDamage(level);
+#if !UNITY_EDITOR
+        YandexMetrica.EventUpgrade(Id, level);
+#endif
     }
 
     private void SetDamage(int level)

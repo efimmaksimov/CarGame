@@ -7,7 +7,6 @@ public class GameSaver : Singleton<GameSaver>
     public void SaveGame()
     {
         onSaveGame?.Invoke();
-        UnityEngine.Debug.Log("Save");
     }
 
     public void AddListener(Action onSaveGame)
