@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public sealed class PlayerUpgradeLevelUpper
 {
     private readonly IMoneyBank moneyBank;

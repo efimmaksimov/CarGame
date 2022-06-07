@@ -5,8 +5,6 @@ public class Player : MonoBehaviour
 {
     private Rigidbody rb;
     private PlayerStatsComponent stats;
-
-    //private VehicleControl vehicleControl;
     public float Speed
     {
         get { return rb.velocity.magnitude; }
@@ -18,10 +16,8 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        //vehicleControl = GetComponentInChildren<VehicleControl>();
         rb = GetComponentInChildren<Rigidbody>();
         stats = GetComponent<PlayerStatsComponent>();
-        //vehicleControl.controlMode = WebPlatformSDK.instance.isMobile ? ControlMode.touch : ControlMode.simple;
     }
 
     public void TakeDamage(int damage)

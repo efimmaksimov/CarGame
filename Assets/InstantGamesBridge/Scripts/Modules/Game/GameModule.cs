@@ -36,6 +36,11 @@ namespace InstantGamesBridge.Modules.Game
 
         public void GetData(string key, Action<bool, string> onComplete)
         {
+            if (!Bridge.isInitialized)
+            {
+                StartCoroutine(WaitForInitialize(key, onComplete));
+                return;
+            }
             if (_dataIsLoading)
             {
                 StartCoroutine(WaitForLoading(key, onComplete));
@@ -50,6 +55,15 @@ namespace InstantGamesBridge.Modules.Game
             var data = PlayerPrefs.GetString($"{_gameDataEditorPlayerPrefsPrefix}_{key}", null);
             OnGetGameDataCompletedSuccess(data);
 #endif
+        }
+
+        private IEnumerator WaitForInitialize(string key, Action<bool, string> onComplete)
+        {
+            while (!Bridge.isInitialized)
+            {
+                yield return null;
+            }
+            GetData(key, onComplete);
         }
 
         private IEnumerator WaitForLoading(string key, Action<bool, string> onComplete)

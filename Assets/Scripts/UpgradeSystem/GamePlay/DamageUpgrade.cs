@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class DamageUpgrade : PlayerUpgrade
 {
     private readonly DamageUpgradeConfig config;
@@ -41,6 +37,5 @@ public class DamageUpgrade : PlayerUpgrade
     {
         int damage = config.GetDamage(level);
         playerStats.SetDamage(damage);
-        //PlayerStats.instance.SetDamage(damage);
     }
 }

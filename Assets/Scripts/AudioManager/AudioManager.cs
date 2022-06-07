@@ -5,18 +5,15 @@ using UnityEngine.Audio;
 
 public class AudioManager : Singleton<AudioManager>
 {
-    //private static AudioManager _instance;
-
-    public Clips clips;
+    [SerializeField] private Clips _clips;
 
     private string _currentMusicName;
-
     private Dictionary<string, AudioClip> _preloadedClips;
 
-    private AudioSource[] soundSources = new AudioSource[3];
-    private AudioSource musicSource;
+    private AudioSource[] _soundSources = new AudioSource[3];
+    private AudioSource _musicSource;
 
-    private AudioMixerGroup masterMixerGroup;
+    private AudioMixerGroup _masterMixerGroup;
 
     private AudioManagerSettings _settings;
 
@@ -24,7 +21,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         base.Awake();
 
-        clips = Resources.Load<Clips>("AudioManager/Clips");
+        _clips = Resources.Load<Clips>("AudioManager/Clips");
 
         _settings = Resources.Load<AudioManagerSettings>("AudioManager/AudioManagerSettings"); 
         if (_settings == null)
@@ -35,9 +32,9 @@ public class AudioManager : Singleton<AudioManager>
 
         _settings.LoadSettings();
 
-        masterMixerGroup = _settings.masterMixerGroup;
+        _masterMixerGroup = _settings.masterMixerGroup;
 
-        _preloadedClips = clips.AllClips;
+        _preloadedClips = _clips.AllClips;
     }
 
     private void CreateSoundObject(SoundChanel chanel)
@@ -45,12 +42,11 @@ public class AudioManager : Singleton<AudioManager>
         GameObject soundGameObject = new GameObject("Sound" + chanel);
         soundGameObject.transform.parent = transform;
 
-        soundSources[(int)chanel] = soundGameObject.AddComponent<AudioSource>();
+        _soundSources[(int)chanel] = soundGameObject.AddComponent<AudioSource>();
 
-        soundSources[(int)chanel].outputAudioMixerGroup = _settings.SoundAudioMixerGroup;
-        soundSources[(int)chanel].playOnAwake = false;
-        soundSources[(int)chanel].priority = 0;
-        //soundSources[(int)chanel].mute = _settings.GetSoundMuted();
+        _soundSources[(int)chanel].outputAudioMixerGroup = _settings.SoundAudioMixerGroup;
+        _soundSources[(int)chanel].playOnAwake = false;
+        _soundSources[(int)chanel].priority = 0;
     }
 
     private void CreateMusicObject()
@@ -58,37 +54,25 @@ public class AudioManager : Singleton<AudioManager>
         GameObject musicGameObject = new GameObject("Music");
         musicGameObject.transform.parent = transform;
 
-        musicSource = musicGameObject.AddComponent<AudioSource>();
+        _musicSource = musicGameObject.AddComponent<AudioSource>();
 
-        musicSource.outputAudioMixerGroup = _settings.MusicAudioMixerGroup;
-        musicSource.loop = true;
-        musicSource.priority = 256;
-        musicSource.playOnAwake = false;
-        //musicSource.mute = _settings.GetMusicMuted();
-        musicSource.volume = 0.08f;
+        _musicSource.outputAudioMixerGroup = _settings.MusicAudioMixerGroup;
+        _musicSource.loop = true;
+        _musicSource.priority = 256;
+        _musicSource.playOnAwake = false;
+        _musicSource.volume = 0.08f;
     }
 
     private void ApplySoundMuted()
     {
-        //for (int i = 0; i < soundSources.Length; i++)
-        //{
-        //    if (soundSources[i] != null)
-        //    {
-        //        soundSources[i].mute = _settings.GetSoundMuted();
-        //    }
-        //}
         float volume = _settings.GetSoundMuted() ? -80 : 0;
-        masterMixerGroup.audioMixer.SetFloat("VolumeSounds", volume);
+        _masterMixerGroup.audioMixer.SetFloat("VolumeSounds", volume);
     }
 
     private void ApplyMusicMuted()
     {
-        //if (musicSource != null)
-        //{
-        //    musicSource.mute = _settings.GetMusicMuted();
-        //}
         float volume = _settings.GetMusicMuted() ? -80 : 0;
-        masterMixerGroup.audioMixer.SetFloat("VolumeMusic", volume);
+        _masterMixerGroup.audioMixer.SetFloat("VolumeMusic", volume);
     }
 
     public void PlaySound(AudioClip sound, float pitch = 1f, SoundChanel chanel = SoundChanel.First)
@@ -98,13 +82,13 @@ public class AudioManager : Singleton<AudioManager>
             Debug.Log("Sound null or empty");
             return;
         }
-        if (soundSources[(int)chanel] == null)
+        if (_soundSources[(int)chanel] == null)
         {
             CreateSoundObject(chanel);
         }
 
-        soundSources[(int)chanel].pitch = pitch;
-        soundSources[(int)chanel].PlayOneShot(sound);
+        _soundSources[(int)chanel].pitch = pitch;
+        _soundSources[(int)chanel].PlayOneShot(sound);
     }
 
     public void PlaySound(string soundName, float pitch = 1f, SoundChanel chanel = SoundChanel.First)
@@ -115,7 +99,7 @@ public class AudioManager : Singleton<AudioManager>
             return;
         }
 
-        if (soundSources[(int)chanel] == null)
+        if (_soundSources[(int)chanel] == null)
         {
             CreateSoundObject(chanel);
         }
@@ -123,8 +107,8 @@ public class AudioManager : Singleton<AudioManager>
         AudioClip clip;
         if (_preloadedClips.TryGetValue(soundName, out clip))
         {
-            soundSources[(int)chanel].pitch = pitch;
-            soundSources[(int)chanel].PlayOneShot(clip);
+            _soundSources[(int)chanel].pitch = pitch;
+            _soundSources[(int)chanel].PlayOneShot(clip);
         }
         else
         {
@@ -148,7 +132,7 @@ public class AudioManager : Singleton<AudioManager>
 
         
 
-        if(musicSource == null)
+        if(_musicSource == null)
         {
             CreateMusicObject();
         }
@@ -171,7 +155,7 @@ public class AudioManager : Singleton<AudioManager>
             return;
         }
 
-        if (musicSource == null)
+        if (_musicSource == null)
         {
             CreateMusicObject();
         }
@@ -197,19 +181,19 @@ public class AudioManager : Singleton<AudioManager>
             while (timer > 0)
             {
                 timer -= Time.unscaledDeltaTime;
-                musicSource.volume = Mathf.Clamp01(timer / fadeTime) * _settings.musicVolume;
+                _musicSource.volume = Mathf.Clamp01(timer / fadeTime) * _settings.musicVolume;
                 yield return null;
             }
         }
 
-        musicSource.clip = clip;
-        musicSource.Play();
+        _musicSource.clip = clip;
+        _musicSource.Play();
 
         timer = 0;
         while(timer < fadeTime)
         {
             timer += Time.unscaledDeltaTime;
-            musicSource.volume = Mathf.Clamp01(timer / fadeTime) * _settings.musicVolume;
+            _musicSource.volume = Mathf.Clamp01(timer / fadeTime) * _settings.musicVolume;
             yield return null;
         }
     }
@@ -234,26 +218,6 @@ public class AudioManager : Singleton<AudioManager>
     public bool GetMusicMuted()
     {
         return _settings.GetMusicMuted();
-    }
-
-    private IEnumerator PitchMusic()
-    {
-        if (musicSource.pitch >= 1)
-        {
-            while (musicSource.pitch > 0.8f)
-            {
-                musicSource.pitch -= 0.005f;
-                yield return new WaitForEndOfFrame();
-            }
-        }
-        else
-        {
-            while (musicSource.pitch < 1f)
-            {
-                musicSource.pitch += 0.005f;
-                yield return new WaitForEndOfFrame();
-            }
-        }
     }
 }
 public enum SoundChanel

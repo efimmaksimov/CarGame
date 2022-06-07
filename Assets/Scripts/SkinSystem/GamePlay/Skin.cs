@@ -1,6 +1,4 @@
 using System;
-using UnityEngine;
-
 public class Skin : ISkin
 {
     public event Action OnBuy;

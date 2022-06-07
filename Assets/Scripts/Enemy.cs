@@ -16,7 +16,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AudioClip damageClip;
     [Space]
 
-    //public Player player;
     [SerializeField] private GameObject ragdollPrefab;
     [Header("Stats")]
     [SerializeField] private int damage;
@@ -86,9 +85,10 @@ public class Enemy : MonoBehaviour
 
     public void Fall()
     {
+        isFalling = true;
         anim.SetTrigger("Fall");
         AudioManager.Instance.PlaySound(damageClip, pitch, (SoundChanel)type);
-        isFalling = true;
+        navMeshAgent.isStopped = true;
     }
 
     public void Death()
@@ -103,6 +103,7 @@ public class Enemy : MonoBehaviour
     public void StandUp()
     {
         isFalling = false;
+        navMeshAgent.isStopped = false;
     }
 }
 

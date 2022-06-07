@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Damage
   basePrise: 1000
-  additionalPrice: 750
+  additionalPrice: 500
   baseDamage: 30
   bonusDamage: 5

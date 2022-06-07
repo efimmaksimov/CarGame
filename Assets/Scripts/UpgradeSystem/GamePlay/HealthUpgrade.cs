@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class HealthUpgrade : PlayerUpgrade
 {
     private readonly HealthUpgradeConfig config;
@@ -41,6 +37,5 @@ public class HealthUpgrade : PlayerUpgrade
     {
         int health = config.GetHealth(level);
         playerStats.SetHealth(health);
-        //PlayerStats.instance.SetHealth(health);
     }
 }

@@ -4,9 +4,10 @@ using InstantGamesBridge.Modules.Advertisement;
 using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
+    [HideInInspector] public VehicleControl vehicleControl;
+
     [SerializeField] private UIController controllerUI;
     [SerializeField] private CoinCounter coinCounter;
-
     private IMoneyBank moneyBank;
     private int reward;
     private bool isRewardedAdShown;
@@ -25,27 +26,23 @@ public class GameOver : MonoBehaviour
     {
         moneyBank = ServiceLocator.GetService<MoneyBank>();
     }
-
     private void OnGameOver()
     {
         controllerUI.OnGameOver();
         reward = coinCounter.GetReward();
         controllerUI.SetReward(reward);
     }
-
     public void GoToGarage()
     {
         moneyBank.AddMoney(reward);
         if (!isRewardedAdShown) Bridge.advertisement.ShowInterstitial();
         SceneManager.LoadSceneAsync(1);
     }
-
     #region RewardedAd
     public void ShowRewardedAd()
     {
         Bridge.advertisement.ShowRewarded();
     }
-
     private void OnRewardedStateChanged(RewardedState state)
     {
         switch (state)
@@ -63,11 +60,10 @@ public class GameOver : MonoBehaviour
                 break;
         }
     }
-
     private void OnOpen()
     {
-        Time.timeScale = 0;
         AudioListener.volume = 0;
+        vehicleControl.activeControl = false;
     }
     private void OnReward()
     {
@@ -79,8 +75,8 @@ public class GameOver : MonoBehaviour
     }
     private void OnClose()
     {
-        Time.timeScale = 1;
         AudioListener.volume = 1;
+        vehicleControl.activeControl = true;
         GoToGarage();
     }
 #endregion

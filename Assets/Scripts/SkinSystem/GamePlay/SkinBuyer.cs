@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class SkinBuyer
 {
     private IMoneyBank moneyBank;

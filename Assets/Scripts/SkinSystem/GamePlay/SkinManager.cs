@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SkinManager : MonoBehaviour, ISkinManager
@@ -43,7 +41,6 @@ public class SkinManager : MonoBehaviour, ISkinManager
 
     public ISkin GetSelectedSkin()
     {
-        //Debug.Log(selectedSkin.Id);
         return selectedSkin;
     }
 

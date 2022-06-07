@@ -1,19 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.UI;
 
 public class EnemyGenerator : MonoBehaviour
 {
     [SerializeField] private WaveConfig waveConfig;
     [SerializeField] private GameObject[] enemyPrefabs;
-    [SerializeField] private int mapSize;
     [SerializeField] private float cooldownRespawn;
     private Player player;
 
     private List<Enemy> activeEnemies = new List<Enemy>();
     private int enemyCounter;
+    private WaveData currentWaveData;
 
     private void Awake()
     {
@@ -25,12 +23,14 @@ public class EnemyGenerator : MonoBehaviour
     }
     void Start()
     {
+        currentWaveData = waveConfig.GetWaveData(WaveProgress.Instance.CurrentWave);
         player = FindObjectOfType<Player>(false);
         StartCoroutine(Respawn());
     }
 
     private void RespawnEnemy(GameObject prefab)
     {
+        int mapSize = waveConfig.mapSize / 2;
         Vector3 position = new Vector3(Random.Range(-mapSize, mapSize), 1, Random.Range(-mapSize, mapSize));
         Enemy enemy = Instantiate(prefab, position, Random.rotation, transform).GetComponent<Enemy>();
         enemy.target = player;
@@ -43,7 +43,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         for (int j = 0; j < enemyPrefabs.Length; j++)
         {
-            for (int i = 0; i < waveConfig.GetWaveData(WaveProgress.Instance.CurrentWave).enemiesQuantity[j]; i++)
+            for (int i = 0; i < currentWaveData.enemiesQuantity[j]; i++)
             {
                 RespawnEnemy(enemyPrefabs[j]);
                 yield return new WaitForSeconds(cooldownRespawn);

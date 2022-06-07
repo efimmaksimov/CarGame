@@ -44,7 +44,6 @@ public class PlayerStatsComponent : MonoBehaviour
         Health = health;
         if (currentHealth == 0)
         {
-            //Time.timeScale = 0;
             vehicle.activeControl = false;
             controllerUI.ChangeGameOverText();
             Messenger.Broadcast(GameEvents.gameOver);

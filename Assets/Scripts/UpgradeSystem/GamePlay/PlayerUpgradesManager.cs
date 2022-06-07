@@ -43,11 +43,11 @@ public class PlayerUpgradesManager : MonoBehaviour, IPlayerUpgradesManager
 
     private void Awake()
     {
-        var configs = catalog.GetPlayerUpgrades(); // var = PlayerUpgradeConfig[]
+        var configs = catalog.GetPlayerUpgrades();
         for (int i = 0; i < configs.Length; i++)
         {
-            var config = configs[i]; // var = PlayerUpgradeConfig
-            var upgrade = (PlayerUpgrade)config.InstantiateUpgrade(); // var = PlayerUpgrade
+            var config = configs[i];
+            var upgrade = (PlayerUpgrade)config.InstantiateUpgrade();
             upgrades.Add(config.id, upgrade);
         }
         IMoneyBank moneyBank = ServiceLocator.GetService<MoneyBank>();

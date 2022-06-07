@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 [CreateAssetMenu(
     menuName = "Configs/Wave"
@@ -7,6 +6,7 @@ public class WaveConfig : ScriptableObject
 {
     [SerializeField] private WaveData[] waveDatas;
     [SerializeField] private WaveData lastWaveData;
+    public int mapSize;
 
     public WaveData GetWaveData(int wave)
     {
@@ -25,10 +25,6 @@ public class WaveConfig : ScriptableObject
                 int index = (i + waveData.enemiesQuantity.Length) % waveData.enemiesQuantity.Length;
                 waveData.enemiesQuantity[index]++;
             }
-            //for (int i = 0; i < waveData.enemiesQuantity.Length; i++)
-            //{
-            //    waveData.enemiesQuantity[i] += wave - waveDatas.Length + 1;
-            //}
             return waveData;
         }
     }

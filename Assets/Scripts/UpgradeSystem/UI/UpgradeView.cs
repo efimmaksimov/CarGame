@@ -3,17 +3,17 @@ using UnityEngine.UI;
 
 public class UpgradeView : MonoBehaviour
 {
-    public Button UpgradeButton
-    {
-        get { return upgradeButton; }
-    }
-
     [SerializeField] private Button upgradeButton;
     [SerializeField] private Text valueText;
     [SerializeField] private Text priceText;
 
     private int currrentValue;
     private int nextValue;
+
+    public Button UpgradeButton
+    {
+        get { return upgradeButton; }
+    }
 
     public void SetValue(string value)
     {

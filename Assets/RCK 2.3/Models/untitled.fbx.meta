@@ -1,0 +1,348 @@
+fileFormatVersion: 2
+guid: 5cae77ddc6a67694082b52ef748d4a98
+ModelImporter:
+  serializedVersion: 21202
+  internalIDToNameTable:
+  - first:
+      74: 717067935125349225
+    second: Inside|BL|Take 001|BaseLayer
+  - first:
+      74: 320888777973127840
+    second: Inside|Body|Take 001|BaseLayer
+  - first:
+      74: 6365493187070643713
+    second: Inside|BR|Take 001|BaseLayer
+  - first:
+      74: -299319777814419487
+    second: Inside|Collision|Take 001|BaseLayer
+  - first:
+      74: 8895637011411954461
+    second: Inside|FL|Take 001|BaseLayer
+  - first:
+      74: -5892594961265393414
+    second: Inside|FR|Take 001|BaseLayer
+  - first:
+      74: 1257432849806793829
+    second: Inside|Glass|Take 001|BaseLayer
+  - first:
+      74: -6393004863271775213
+    second: Inside|Inside|Take 001|BaseLayer
+  - first:
+      74: 4192609154638821945
+    second: Inside|Steer|Take 001|BaseLayer
+  - first:
+      74: 6998609524901120218
+    second: Glass|BL|Take 001|BaseLayer
+  - first:
+      74: 6598908805303898650
+    second: Glass|Body|Take 001|BaseLayer
+  - first:
+      74: 5476052211585672994
+    second: Glass|BR|Take 001|BaseLayer
+  - first:
+      74: -8990967008342957496
+    second: Glass|Collision|Take 001|BaseLayer
+  - first:
+      74: 920380982976218246
+    second: Glass|FL|Take 001|BaseLayer
+  - first:
+      74: 9036611548729321746
+    second: Glass|FR|Take 001|BaseLayer
+  - first:
+      74: 7513521361555711144
+    second: Glass|Glass|Take 001|BaseLayer
+  - first:
+      74: 2211446884480764173
+    second: Glass|Inside|Take 001|BaseLayer
+  - first:
+      74: -8751808726301478914
+    second: Glass|Steer|Take 001|BaseLayer
+  - first:
+      74: -1257152471118644198
+    second: Steer|BL|Take 001|BaseLayer
+  - first:
+      74: 7806898133411471951
+    second: Steer|Body|Take 001|BaseLayer
+  - first:
+      74: 2719764956839420639
+    second: Steer|BR|Take 001|BaseLayer
+  - first:
+      74: 1427222084546815813
+    second: Steer|Collision|Take 001|BaseLayer
+  - first:
+      74: -3564004922766831278
+    second: Steer|FL|Take 001|BaseLayer
+  - first:
+      74: -4724118853307568871
+    second: Steer|FR|Take 001|BaseLayer
+  - first:
+      74: 2246733706647917117
+    second: Steer|Glass|Take 001|BaseLayer
+  - first:
+      74: -5096253109265757402
+    second: Steer|Inside|Take 001|BaseLayer
+  - first:
+      74: 3360730620127657526
+    second: Steer|Steer|Take 001|BaseLayer
+  - first:
+      74: 866343459500247558
+    second: Body|BL|Take 001|BaseLayer
+  - first:
+      74: 1477795084196408254
+    second: Body|Body|Take 001|BaseLayer
+  - first:
+      74: -1170134764066415088
+    second: Body|BR|Take 001|BaseLayer
+  - first:
+      74: 5002613294883309888
+    second: Body|Collision|Take 001|BaseLayer
+  - first:
+      74: -5684116876710003402
+    second: Body|FL|Take 001|BaseLayer
+  - first:
+      74: 1531185446244230285
+    second: Body|FR|Take 001|BaseLayer
+  - first:
+      74: 738508146245022924
+    second: Body|Glass|Take 001|BaseLayer
+  - first:
+      74: -6724842714516795102
+    second: Body|Inside|Take 001|BaseLayer
+  - first:
+      74: 5677389538724034723
+    second: Body|Steer|Take 001|BaseLayer
+  - first:
+      74: -568213620772254266
+    second: FL|BL|Take 001|BaseLayer
+  - first:
+      74: 8383960227873275066
+    second: FL|Body|Take 001|BaseLayer
+  - first:
+      74: 7558719047593727510
+    second: FL|BR|Take 001|BaseLayer
+  - first:
+      74: -2723164440050448019
+    second: FL|Collision|Take 001|BaseLayer
+  - first:
+      74: 324521298600515000
+    second: FL|FL|Take 001|BaseLayer
+  - first:
+      74: 4993884044049678494
+    second: FL|FR|Take 001|BaseLayer
+  - first:
+      74: 4495346102753669172
+    second: FL|Glass|Take 001|BaseLayer
+  - first:
+      74: 7305677709596061039
+    second: FL|Inside|Take 001|BaseLayer
+  - first:
+      74: 3865662101272486658
+    second: FL|Steer|Take 001|BaseLayer
+  - first:
+      74: 3955045637446157241
+    second: BL|BL|Take 001|BaseLayer
+  - first:
+      74: -9192608057835204699
+    second: BL|Body|Take 001|BaseLayer
+  - first:
+      74: -2073186614368241969
+    second: BL|BR|Take 001|BaseLayer
+  - first:
+      74: -6588382159438365745
+    second: BL|Collision|Take 001|BaseLayer
+  - first:
+      74: -2096639862258311195
+    second: BL|FL|Take 001|BaseLayer
+  - first:
+      74: 5562902040239314183
+    second: BL|FR|Take 001|BaseLayer
+  - first:
+      74: -3421030694743674933
+    second: BL|Glass|Take 001|BaseLayer
+  - first:
+      74: 6031427704587260716
+    second: BL|Inside|Take 001|BaseLayer
+  - first:
+      74: 1186260411684386654
+    second: BL|Steer|Take 001|BaseLayer
+  - first:
+      74: -2356896114076016818
+    second: FR|BL|Take 001|BaseLayer
+  - first:
+      74: -7887126282761132404
+    second: FR|Body|Take 001|BaseLayer
+  - first:
+      74: -8503585830304431399
+    second: FR|BR|Take 001|BaseLayer
+  - first:
+      74: -2331392205165176734
+    second: FR|Collision|Take 001|BaseLayer
+  - first:
+      74: 8307193233674962237
+    second: FR|FL|Take 001|BaseLayer
+  - first:
+      74: -5744806413810082898
+    second: FR|FR|Take 001|BaseLayer
+  - first:
+      74: 8362637808606347478
+    second: FR|Glass|Take 001|BaseLayer
+  - first:
+      74: -5098246983878813255
+    second: FR|Inside|Take 001|BaseLayer
+  - first:
+      74: -3821476643708875508
+    second: FR|Steer|Take 001|BaseLayer
+  - first:
+      74: 6336740059916616902
+    second: BR|BL|Take 001|BaseLayer
+  - first:
+      74: -5987799027994518021
+    second: BR|Body|Take 001|BaseLayer
+  - first:
+      74: 6701320559888949494
+    second: BR|BR|Take 001|BaseLayer
+  - first:
+      74: -4155552926252461633
+    second: BR|Collision|Take 001|BaseLayer
+  - first:
+      74: -4050604411063484713
+    second: BR|FL|Take 001|BaseLayer
+  - first:
+      74: 7010773049370619393
+    second: BR|FR|Take 001|BaseLayer
+  - first:
+      74: 5039968645291991522
+    second: BR|Glass|Take 001|BaseLayer
+  - first:
+      74: 7611170129753735278
+    second: BR|Inside|Take 001|BaseLayer
+  - first:
+      74: 8130183095910235370
+    second: BR|Steer|Take 001|BaseLayer
+  - first:
+      74: 7126848741814807975
+    second: Collision|BL|Take 001|BaseLayer
+  - first:
+      74: -4572645378657947156
+    second: Collision|Body|Take 001|BaseLayer
+  - first:
+      74: -4445357957925444780
+    second: Collision|BR|Take 001|BaseLayer
+  - first:
+      74: -40941812760978207
+    second: Collision|Collision|Take 001|BaseLayer
+  - first:
+      74: 7876203890059342997
+    second: Collision|FL|Take 001|BaseLayer
+  - first:
+      74: 3447857795332629476
+    second: Collision|FR|Take 001|BaseLayer
+  - first:
+      74: -4104292323053346509
+    second: Collision|Glass|Take 001|BaseLayer
+  - first:
+      74: -1600888630029979263
+    second: Collision|Inside|Take 001|BaseLayer
+  - first:
+      74: 3295435748792466929
+    second: Collision|Steer|Take 001|BaseLayer
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
